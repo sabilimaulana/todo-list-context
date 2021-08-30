@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import styles from "./TodoInput.module.css";
+import { v4 as uuidv4 } from "uuid";
 
-// import TodoContext from "../../context/todo-context";
+import TodoContext from "../../context/todo-context";
 
 const TodoInput = () => {
   const [todo, setTodo] = useState("");
-  // const { addTodo } = useContext(TodoContext);
+  const { addTodo } = useContext(TodoContext);
 
   const onChangeHandler = (e) => {
     setTodo(e.target.value);
@@ -16,12 +17,12 @@ const TodoInput = () => {
 
     // {id: 111, text: 'Some text', complete: false}
     const newTodo = {
-      id: Math.random(),
+      id: uuidv4(),
       text: todo,
       complete: false,
     };
 
-    // addTodo(newTodo);
+    addTodo(newTodo);
 
     setTodo("");
   };
